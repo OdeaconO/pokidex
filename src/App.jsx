@@ -1,16 +1,20 @@
 import { useState } from "react";
 import "./App.css";
-import Header from "./header";
-import PokemonList from "./pokemonList";
-import DetailsPage from "./detailsPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import InstallButton from "./installButton";
+import Header from "./header.jsx";
+import PokemonList from "./pokemonList.jsx";
+import DetailsPage from "./detailsPage.jsx";
 
 export default function App() {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("number");
+
   return (
     <BrowserRouter>
       <main className="main">
+        <InstallButton />
+
         <Routes>
           <Route
             path="/"

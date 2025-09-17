@@ -1,6 +1,5 @@
 import Logo from "./logo";
 import SearchBar from "./searchBar";
-import InstallButton from "./installButton";
 
 export default function Header({ setSearch, search, sort, setSort }) {
   return (
@@ -13,7 +12,6 @@ export default function Header({ setSearch, search, sort, setSort }) {
           sort={sort}
           setSort={setSort}
         />
-        <InstallButton />
       </div>
     </header>
   );
