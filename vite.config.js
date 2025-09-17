@@ -9,10 +9,10 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["vite.svg"], // you can add other assets too
       manifest: {
-        name: "Pokémon App",
-        short_name: "Pokémon",
+        name: "Pokiidex",
+        short_name: "Pokiidex",
         description: "A Pokémon app built with Vite + React",
-        theme_color: "#ffcb05",
+        theme_color: "#d10000ff",
         background_color: "#ffffff",
         display: "standalone",
         start_url: ".",

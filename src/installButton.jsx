@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function InstallButton() {
-  const [deferredPrompt, setDeferredPrompt] = useState(null);
-  const [isInstalled, setIsInstalled] = useState(false);
+  const deferredPrompt = useRef(null); // stays alive across navigations
+  const [canInstall, setCanInstall] = useState(false);
 
   useEffect(() => {
-    // Listen for beforeinstallprompt
     const handler = (e) => {
       e.preventDefault();
-      setDeferredPrompt(e);
+      deferredPrompt.current = e;
+      setCanInstall(true);
     };
+
     window.addEventListener("beforeinstallprompt", handler);
 
-    // Detect if already installed
     window.addEventListener("appinstalled", () => {
-      setIsInstalled(true);
-      setDeferredPrompt(null);
+      deferredPrompt.current = null;
+      setCanInstall(false);
     });
 
     return () => {
@@ -23,16 +23,18 @@ export default function InstallButton() {
     };
   }, []);
 
-  if (isInstalled || !deferredPrompt) return null;
-
   const installApp = async () => {
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
+    if (!deferredPrompt.current) return;
+    deferredPrompt.current.prompt();
+    const { outcome } = await deferredPrompt.current.userChoice;
     if (outcome === "accepted") {
       console.log("App installed");
     }
-    setDeferredPrompt(null);
+    deferredPrompt.current = null;
+    setCanInstall(false);
   };
+
+  if (!canInstall) return null;
 
   return (
     <button onClick={installApp} className="install-btn">
