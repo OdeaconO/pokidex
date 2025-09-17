@@ -1,11 +1,11 @@
 {
-  "name": "Pokémon App",
-  "short_name": "Pokémon",
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffcb05",
+  "name": "Pokiidex",
+  "short_name": "Pokiidex",
   "description": "A Pokémon app built with Vite + React",
+  "theme_color": "#d10000",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": ".",
   "icons": [
     {
       "src": "/pwa-192x192.png",
